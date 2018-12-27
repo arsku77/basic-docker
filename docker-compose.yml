@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+
+  mysql_img:
+    container_name: mysql_con
+    build:
+      context: ./mysql
+      args:
+        - MYSQL_CONTAINER_USER=mysql
+        - MYSQL_CONTAINER_GROUP=mysql
+    command: --default-authentication-plugin=mysql_native_password --innodb_use_native_aio=0
+    volumes:
+      - ./mysql/logs/mysql:/var/log/mysql
+      - ./mysql/database:/var/lib/mysql
+    environment:
+      - MYSQL_CONTAINER_USER=mysql
+      - MYSQL_CONTAINER_GROUP=mysql
+      - MYSQL_ROOT_PASSWORD=example
+  web_img:
+    container_name: php_web
+    build:
+      context: ./php
+    volumes:
+      - ./:/var/www/html/
+    depends_on:
+      - mysql_img
+    ports:
+      #      - "8100:80"
+      - "80:80"
+    stdin_open: true
+    tty: true
+
+  adminer_img:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
