@@ -22,13 +22,6 @@ else
     trigger_error("nesukurta: "  . mysqli_error($conn), E_USER_ERROR);
 }
 mysqli_close($conn);
-//$conprim = mysqli_connect($host, $user, $pass, 'test');
-//
-//
-//if (!$conprim) {
-//    trigger_error("Neprisijunge: "  . mysqli_error($conprim), E_USER_ERROR);
-//    die("Connection failed: " . $conprim->connect_error);
-//}
 
 
 echo "Connected to MySQL successfully!";
