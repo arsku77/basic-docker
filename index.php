@@ -23,7 +23,6 @@ else
 }
 mysqli_close($conn);
 
-
 echo "Connected to MySQL successfully!";
 echo phpinfo();
 ?>
