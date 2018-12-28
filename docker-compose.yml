@@ -2,37 +2,37 @@ version: '3'
 
 services:
 
-  mysql_img:
-    container_name: mysql_con
+  mysql_basic_img:
+    container_name: mysql_basic_cont
     build:
-      context: ./mysql
+      context: ./docker/mysql
       args:
         - MYSQL_CONTAINER_USER=mysql
         - MYSQL_CONTAINER_GROUP=mysql
     command: --default-authentication-plugin=mysql_native_password --innodb_use_native_aio=0
     volumes:
-      - ./mysql/logs/mysql:/var/log/mysql
-      - ./mysql/database:/var/lib/mysql
+      - ./docker/mysql/logs/mysql:/var/log/mysql
+      - ./docker/mysql/database:/var/lib/mysql
     environment:
       - MYSQL_CONTAINER_USER=mysql
       - MYSQL_CONTAINER_GROUP=mysql
       - MYSQL_ROOT_PASSWORD=example
-  web_img:
-    container_name: php_web
+  web_basic_img:
+    container_name: web_basic_cont
     build:
-      context: ./php
+      context: ./docker/php
     volumes:
       - ./:/var/www/html/
     depends_on:
-      - mysql_img
+      - mysql_basic_img
     ports:
       #      - "8100:80"
       - "80:80"
     stdin_open: true
     tty: true
 
-  adminer_img:
-    container_name: adminer
+  adminer_basic_img:
+    container_name: adminer_basic_cont
     image: adminer
     restart: always
     ports:

@@ -1,4 +1,4 @@
 
 .idea/
-mysql/database/
-mysql/logs/
+/docker/mysql/database/
+/docker/mysql/logs/

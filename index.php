@@ -2,8 +2,8 @@
 <h4>Attempting MySQL connection from php...</h4>
 <?php
 //$host = 'localhost:3306';
-$host = 'db';//spec Docker'iui
-$host = 'mysql_img';//spec Docker'iui
+//$host = 'db';//spec Docker'iui
+$host = 'mysql_basic_img';//spec Docker'iui
 $user = 'root';
 $pass = 'example';
 $conn = new mysqli($host, $user, $pass);
